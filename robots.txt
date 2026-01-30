@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /norobots/
+
+Sitemap: https://iiiiin.github.io/dev-log-hub/sitemap.xml
