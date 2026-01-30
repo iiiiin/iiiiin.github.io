@@ -2,76 +2,140 @@ import os
 import subprocess
 import requests
 import sys
+import datetime
+import json       # json 모듈 명시적 import
+import textwrap   # ✨ 추가: 들여쓰기 제거용
+
 from dotenv import load_dotenv
 
-# 1. .env 파일 로드 (보안)
-# 스크립트 실행 위치에 관계없이 루트의 .env를 찾도록 설정
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(current_dir)
-load_dotenv(os.path.join(root_dir, '.env'))
+# --- [설정 구간] ---
+TARGET_REPOS = [
+    "/Users/iiiiin/WIP/dev-log-hub",
+    "/Users/iiiiin/WIP/turtleneck-macos",
+    "/Users/iiiiin/WIP/turtleneck-extension",
+    "/Users/iiiiin/WIP/my-dear-extension",
+    "/Users/iiiiin/WIP/a-cup-of",
+    "/Users/iiiiin/WIP/hop-account",
+    "/Users/iiiiin/WIP/cocos-forest",
+    "/Users/iiiiin/WIP/portfolio",
+]
+# ------------------
 
-# 환경변수에서 n8n 주소 가져오기
+script_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(script_dir)
+load_dotenv(os.path.join(root_dir, '.env'))
 N8N_WEBHOOK_URL = os.getenv("N8N_WEBHOOK_URL")
 
-def get_git_info():
-    """Git 로그와 변경사항을 가져옵니다."""
+def get_git_changes(repo_path):
+    """특정 리포지토리의 오늘 변경사항을 가져옵니다."""
     try:
-        # A. 오늘 자정부터 지금까지의 커밋 메시지 (내가 뭘 했는지 요약)
+        if not os.path.exists(repo_path):
+            return None
+
+        # 1. 오늘 자정 이후 커밋
         logs = subprocess.check_output(
             ['git', 'log', '--since=midnight', '--pretty=format:- %s'], 
-            text=True
+            cwd=repo_path, text=True, stderr=subprocess.DEVNULL
         ).strip()
 
-        # B. 현재 스테이징된 변경사항 (코드의 구체적 내용)
-        # 너무 긴 파일(lock 파일 등)은 제외하여 토큰 절약
+        # 2. 스테이징된 변경사항 (Diff)
         diff = subprocess.check_output(
             ['git', 'diff', '--cached', '.', ':(exclude)package-lock.json', ':(exclude)*.lock'], 
-            text=True
+            cwd=repo_path, text=True, stderr=subprocess.DEVNULL
         ).strip()
-        
-        return logs, diff
-    except subprocess.CalledProcessError:
-        print("⚠️ Git 정보를 가져오는 데 실패했습니다. Git 저장소가 맞나요?")
-        return None, None
 
-def send_to_n8n(logs, diff):
-    """n8n으로 데이터를 전송합니다."""
-    if not logs and not diff:
-        print("📭 변경된 내용(Diff)이나 오늘의 커밋(Log)이 없습니다.")
-        print("   (팁: 'git add'를 먼저 하셨나요?)")
-        return
-
-    # 데이터가 너무 많으면 AI가 힘들어하므로 적당히 자름 (선택사항)
-    if len(diff) > 15000:
-        diff = diff[:15000] + "\n... (내용이 너무 길어 생략됨)"
-
-    payload = {
-        "logs": logs if logs else "오늘 커밋 없음",
-        "diff": diff if diff else "코드 변경 없음 (문서 작업 등)",
-        "project": "dev-log-hub", # 프로젝트명 식별자
-        "author": "iiiiin"
-    }
-
-    print("🚀 n8n으로 데이터를 전송합니다...")
-    
-    try:
-        response = requests.post(N8N_WEBHOOK_URL, json=payload, timeout=10)
-        
-        if response.status_code == 200:
-            print("✅ 성공! 초안 작성이 요청되었습니다.")
-        else:
-            print(f"❌ 실패: 서버 응답 코드 {response.status_code}")
-            print(response.text)
+        if not logs and not diff:
+            return None
             
-    except Exception as e:
-        print(f"❌ 전송 중 에러 발생: {e}")
+        return {"name": os.path.basename(repo_path), "logs": logs, "diff": diff}
+
+    except Exception:
+        return None
+
+def save_to_file(content_json):
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    
+    print("----- [n8n에서 받은 데이터] -----")
+    print(content_json)
+    print("-------------------------------")
+
+    # 1. 블로그 파일 생성 (.md) - Velog 내용만 사용
+    blog_filename = f"{today}-dev-log.md"
+    blog_path = os.path.join(root_dir, "blog", "_posts", blog_filename)
+    
+    # 키 이름 호환성 체크 (velog_content 또는 velog)
+    body_content = content_json.get('velog', content_json.get('velog_content', '내용 없음'))
+
+    # ✨ [수정] textwrap.dedent를 사용하여 Frontmatter의 공백 제거
+    blog_content = textwrap.dedent(f"""\
+        ---
+        title: "{today} 개발 일지"
+        date: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+        categories: [DevLog]
+        tags: [TIL]
+        ---
+
+        {body_content}
+        """)
+
+    with open(blog_path, "w", encoding="utf-8") as f:
+        f.write(blog_content)
+    print(f"✅ 블로그 파일 생성 완료: {blog_path}")
+    
+    # 2. SNS 파일 생성 (.json) - 전체 데이터(Qiita, X, Threads 포함) 저장
+    sns_path = os.path.join(root_dir, "social", f"{today}.json")
+    
+    # social 폴더가 없으면 생성
+    os.makedirs(os.path.dirname(sns_path), exist_ok=True)
+
+    with open(sns_path, "w", encoding="utf-8") as f:
+        json.dump(content_json, f, ensure_ascii=False, indent=2)
+    print(f"✅ SNS 파일 생성 완료: {sns_path}")
+    
+    # VS Code로 블로그 글 열기
+    try: subprocess.call(["code", blog_path])
+    except: pass
 
 if __name__ == "__main__":
-    # 보안 체크
     if not N8N_WEBHOOK_URL:
-        print("❌ 에러: .env 파일에 'N8N_WEBHOOK_URL'이 없습니다.")
+        print("❌ 에러: .env 파일에서 N8N_WEBHOOK_URL을 찾을 수 없습니다.")
         sys.exit(1)
 
-    print("🔍 작업 내용을 수집 중입니다...")
-    logs, diff = get_git_info()
-    send_to_n8n(logs, diff)
+    print("🔍 여러 프로젝트를 순회하며 오늘의 작업을 수집합니다...")
+    
+    all_logs = []
+    all_diffs = []
+    active_projects = []
+
+    for repo in TARGET_REPOS:
+        data = get_git_changes(repo)
+        if data:
+            print(f"  👉 감지됨: {data['name']}")
+            active_projects.append(data['name'])
+            all_logs.append(f"### 📂 Project: {data['name']}\n{data['logs'] if data['logs'] else '커밋 없음'}")
+            all_diffs.append(f"### 📂 Project: {data['name']}\n{data['diff'][:3000]}")
+
+    if not active_projects:
+        print("📭 오늘은 감지된 변경사항(Staged or Commited)이 없습니다.")
+        sys.exit(0)
+
+    print(f"\n🚀 총 {len(active_projects)}개 프로젝트의 내용을 AI(n8n)에게 보냅니다...")
+
+    payload = {
+        "logs": "\n\n".join(all_logs),
+        "diff": "\n\n".join(all_diffs),
+        "project": f"Multi-Repo Work ({', '.join(active_projects)})"
+    }
+
+    try:
+        response = requests.post(N8N_WEBHOOK_URL, json=payload, timeout=60)
+        
+        if response.status_code == 200:
+            result = response.json()
+            save_to_file(result)
+            print("\n✨ 모든 작업이 완료되었습니다! 생성된 파일을 확인하고 Push하세요.")
+        else:
+            print(f"❌ n8n 에러: {response.status_code} - {response.text}")
+
+    except Exception as e:
+        print(f"❌ 통신 에러: {e}")
