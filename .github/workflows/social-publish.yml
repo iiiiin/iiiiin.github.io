@@ -1,0 +1,38 @@
+# .github/workflows/social-publish.yml
+name: Notify n8n to Publish
+
+on:
+  push:
+    paths:
+      - 'social/**.json'  # social 폴더에 json 파일이 올라올 때만 발동!
+    branches:
+      - main
+
+jobs:
+  notify-n8n:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get changed file
+        id: file
+        run: |
+          # 가장 최근에 수정된 json 파일을 찾습니다.
+          FILE=$(ls -t social/*.json | head -n 1)
+          echo "Recent file: $FILE"
+          echo "filepath=$FILE" >> $GITHUB_OUTPUT
+
+      - name: Read JSON content
+        id: json
+        run: |
+          # JSON 파일 내용을 읽어서 환경변수에 담습니다.
+          CONTENT=$(cat ${{ steps.file.outputs.filepath }} | jq -c .)
+          echo "content=$CONTENT" >> $GITHUB_OUTPUT
+
+      - name: Send to n8n
+        uses: distributhor/workflow-webhook@v3
+        with:
+          # 👇 여기에 아까 ngrok 주소 + /webhook-test/publish-post 를 넣어야 합니다.
+          webhook_url: ${{ secrets.N8N_PUBLISH_URL }}
+          data: ${{ steps.json.outputs.content }}
