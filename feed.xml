@@ -1,21 +1,21 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>https://iiiiin.github.io/dev-log-hub/</id>
+  <id>https://iiiiin.github.io/</id>
   <title>Dev Log Hub</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-01-30T16:50:47+09:00</updated>
+  <updated>2026-01-30T18:03:03+09:00</updated>
   <author>
     <name>iiiiin</name>
-    <uri>https://iiiiin.github.io/dev-log-hub/</uri>
+    <uri>https://iiiiin.github.io/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="https://iiiiin.github.io/dev-log-hub/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="https://iiiiin.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="ko"
-    href="https://iiiiin.github.io/dev-log-hub/"/>
+    href="https://iiiiin.github.io/"/>
   <generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator>
   <rights> © 2026 iiiiin </rights>
-  <icon>/dev-log-hub/assets/img/favicons/favicon.ico</icon>
-  <logo>/dev-log-hub/assets/img/favicons/favicon-96x96.png</logo>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
 
 </feed>
