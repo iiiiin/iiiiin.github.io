@@ -1,0 +1,59 @@
+{
+  "name": "blog-multi-publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "publish-post",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "91d60147-89d6-4289-95e6-20ed4c5a43cd",
+      "name": "Webhook",
+      "webhookId": "d5550bd7-c940-4d87-b3eb-d19e4b65fae5"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Webhook에서 받은 데이터 (social/*.json 내용)\nconst data = items[0].json;\n\n// 데이터가 비어있을 경우를 대비한 안전장치\nconst xContent = data.x || \"\";\nconst threadsContent = data.threads || \"\";\n\n// 🚀 X와 Threads에 필요한 데이터만 깔끔하게 내보냅니다.\nreturn {\n  x: {\n    text: xContent\n  },\n  threads: {\n    text: threadsContent\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ef161f36-fbf7-4eb5-9d1c-2340d8ab59a5",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "c0da3253-9fba-4014-8436-abf0004054b7",
+  "meta": {
+    "instanceId": "659d039993429944e3a7e86cf198cd132d961556565284951614a9001c90dba8"
+  },
+  "id": "WK6J-Oxp1RHbHG0Po-PXU",
+  "tags": []
+}

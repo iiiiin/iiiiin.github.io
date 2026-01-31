@@ -14,12 +14,12 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Dev Log Hub # the main title
+title: IN # the main title
 
-tagline: Building my automated development archive # it will display as the subtitle
+tagline: 정리하고 기록하는 개발자 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  성장하는 개발자 iiiiin의 기술 블로그입니다.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -38,7 +38,7 @@ social:
   email: in24041210@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
+    # - https://twitter.com/username # change to your Twitter homepage
     - https://github.com/iiiiin # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
@@ -119,15 +119,15 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: iiiiin/dev-log-hub # <gh-username>/<repo>
-    repo_id: 
-    category:
-    category_id:
-    mapping: # optional, default to 'pathname'
-    strict: # optional, default to '0'
-    input_position: # optional, default to 'bottom'
-    lang: # optional, default to the value of `site.lang`
-    reactions_enabled: # optional, default to the value of `1`
+    repo: iiiiin/iiiiin.github.io # <gh-username>/<repo>
+    repo_id: "R_kgDORErhVA"
+    category: "General"
+    category_id: "DIC_kwDORErhVM4C1rey"
+    mapping: title # optional, default to 'pathname'
+    strict: 0 # optional, default to '0'
+    input_position: bottom # optional, default to 'bottom'
+    lang: ko # optional, default to the value of `site.lang`
+    reactions_enabled: 1 # optional, default to the value of `1`
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:

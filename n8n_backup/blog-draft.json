@@ -1,0 +1,152 @@
+{
+  "name": "blog-draft",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "blog-draft",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e7ec821a-8645-4a26-9101-51cb9c66b387",
+      "name": "Webhook",
+      "webhookId": "97df57b0-a8db-4a1c-9b2b-3d5f59da37da"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=당신은 전문 테크니컬 라이터입니다.\n아래 제공된 [Git Commit Log]와 [Code Diff]를 분석하여 개발 일지를 작성해주세요.\n\n**입력 데이터:**\n- Logs: {{ $json.body.logs }}\n- Diff: {{ $json.body.diff }}\n\n**작성 규칙:**\n1. **분석:** 코드 변경 사항을 분석하여 어떤 기능을 개발했는지, 어떤 버그를 수정했는지 파악하세요.\n2. **4가지 버전 작성:**\n   - **Velog (KR):** 한국 개발자들을 위한 상세한 기술 블로그 포스팅 (존댓말, 코드 스니펫 포함, 마크다운).\n   - **Qiita (JP):** 일본 개발자들을 위한 기술 정보 공유 (정중한 일본어 Desu/Masu체, 마크다운).\n   - **Threads (KR):** SNS용 짧은 요약 (친근한 말투, 이모지 사용, 핵심만 요약).\n   - **X (JP):** 일본 트위터 감성 (짧고 간결하게, 해시태그 포함).\n3. **출력 형식:** 반드시 아래 **JSON 포맷**으로만 출력하세요. (마크다운 코드블럭 ```json 없이 순수 JSON만 출력)\n\n**JSON 출력 예시:**\n{\n  \"velog_content\": \"# 제목\\n\\n## 오늘 한 일...\",\n  \"qiita_content\": \"# タイトル\\n\\n## 開発内容...\",\n  \"threads_content\": \"오늘 드디어 리버팟 적용 완료! 🚀...\",\n  \"x_content\": \"ついにRiverpod移行完了！💻 #Flutter...\"\n}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "="
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3d4d12b7-2351-4a87-b16b-e05d344a4f17",
+      "name": "Basic LLM Chain",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        208
+      ],
+      "id": "4b262c65-74bd-4c65-b99f-64b35d86fb92",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wePgAzGfFbrsfVtd",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n  {\n    \"velog\": $('Code in JavaScript').item.json.velog_content,\n    \"qiita\": $('Code in JavaScript').item.json.qiita_content,\n    \"threads\": $('Code in JavaScript').item.json.threads_content,\n    \"x\": $('Code in JavaScript').item.json.x_content\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        560,
+        0
+      ],
+      "id": "30771918-9f67-4799-a092-7153a21394d4",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Basic LLM Chain이 준 결과물(text)을 가져옵니다.\n// (만약 에러가 나면 items[0].json.text 대신 $('Basic LLM Chain').item.json.text 로 바꿔보세요)\nconst rawText = $('Basic LLM Chain').item.json.text;\n\n// 2. 마크다운 기호(```json 과 ```)를 정규식으로 찾아서 지워버립니다.\nconst cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();\n\n// 3. 깨끗해진 글자를 진짜 JSON 객체로 변환해서 내보냅니다.\nreturn JSON.parse(cleanText);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        144
+      ],
+      "id": "e8fbb0e7-f702-45d8-be6e-a18996418ed2",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "a1052897-f1c6-498a-916d-6dd24ae0aa30",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "659d039993429944e3a7e86cf198cd132d961556565284951614a9001c90dba8"
+  },
+  "id": "nEMPzyU5v3UPrzuE3hVV1",
+  "tags": []
+}
