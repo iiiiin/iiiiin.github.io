@@ -1,0 +1,36 @@
+name: Publish to Qiita
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'public/**.md'  # ✨ public 폴더 안의 md 파일 변경 시에만 발동!
+
+jobs:
+  publish-qiita:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to Qiita
+        env:
+          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+        run: npx qiita publish --all
+
+      - name: Commit Qiita ID back to repo
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/
+          git diff --staged --quiet || git commit -m "chore: update qiita id [skip ci]"
+          git push
