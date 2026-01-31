@@ -1,6 +1,6 @@
 ---
 title: "Hello Chirpy: 마이그레이션 테스트"
-date: 2026-01-31 19:00:00 +0900
+date: 2026-01-30 19:00:00 +0900
 categories: [Test, Sandbox]
 tags: [test, markdown]
 ---
