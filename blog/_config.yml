@@ -19,7 +19,7 @@ title: IN # the main title
 tagline: 정리하고 기록하는 개발자 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  성장하는 개발자 iiiiin의 기술 블로그입니다.
+  성장하는 개발자 인의 기술 블로그입니다.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -59,9 +59,9 @@ webmaster_verifications:
 # Web Analytics Settings
 analytics:
   google:
-    id: # fill in your Google Analytics ID
+    id: G-BPEE8J8XGD # fill in your Google Analytics ID
   goatcounter:
-    id: # fill in your GoatCounter ID
+    id: iiiiin # fill in your GoatCounter ID
   umami:
     id: # fill in your Umami ID
     domain: # fill in your Umami domain
@@ -75,7 +75,7 @@ analytics:
 
 # Page views settings
 pageviews:
-  provider: # now only supports 'goatcounter'
+  provider: goatcounter # now only supports 'goatcounter'
 
 # Prefer color scheme setting.
 #
