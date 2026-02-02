@@ -3,8 +3,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://iiiiin.github.io/</id>
   <title>IN</title>
-  <subtitle>성장하는 개발자 iiiiin의 기술 블로그입니다.</subtitle>
-  <updated>2026-01-31T18:51:05+09:00</updated>
+  <subtitle>성장하는 개발자 인의 기술 블로그입니다.</subtitle>
+  <updated>2026-02-02T23:59:46+09:00</updated>
   <author>
     <name>iiiiin</name>
     <uri>https://iiiiin.github.io/</uri>
@@ -20,27 +20,121 @@
 
   
   <entry>
-    <title>Hello Chirpy: 마이그레이션 테스트</title>
-    <link href="https://iiiiin.github.io/posts/hello-world/" rel="alternate" type="text/html" title="Hello Chirpy: 마이그레이션 테스트" />
-    <published>2026-01-30T19:00:00+09:00</published>
+    <title>[SWEA] 22795. 일곱 부하의 평균 - Python</title>
+    <link href="https://iiiiin.github.io/posts/swea-average-of-seven/" rel="alternate" type="text/html" title="[SWEA] 22795. 일곱 부하의 평균 - Python" />
+    <published>2025-01-13T16:00:00+09:00</published>
   
-    <updated>2026-01-30T19:00:00+09:00</updated>
+    <updated>2025-01-13T16:00:00+09:00</updated>
   
-    <id>https://iiiiin.github.io/posts/hello-world/</id>
-    <content type="text/html" src="https://iiiiin.github.io/posts/hello-world/" />
+    <id>https://iiiiin.github.io/posts/swea-average-of-seven/</id>
+    <content type="text/html" src="https://iiiiin.github.io/posts/swea-average-of-seven/" />
     <author>
       <name>iiiiin</name>
     </author>
 
   
     
-    <category term="Test" />
-    
-    <category term="Sandbox" />
+    <category term="Algorithm" />
     
   
 
-  <summary>👋 안녕하세요!  이 글은 Velog에서 GitHub Pages(Chirpy)로 이사 오기 전 테스트하는 포스트입니다. 이미지 없이 텍스트와 코드 하이라이팅이 잘 되는지 확인합니다.  ✅ 체크리스트     제목이 제대로 나오는가?   날짜가 올바른가?   카테고리(Test)와 태그(test)가 잘 달렸는가?   💻 코드 하이라이팅 테스트  ```python def hello_world():     print(“Hello, Chirpy Theme!”)  if name == “main”:     hello_world()</summary>
+  <summary>풀이  조건을 잘 확인해야 한다. 입력된 여섯 부하보다 큰 값을 가지고, 모든 부하의 키의 평균이 양의 정수라는 것이다. 따라서, (모든 키 값의 합) % 7 == 0 이어야 된다는 것을 알 수 있다.  여섯 부하의 키 값 중 가장 큰 값을 기준으로 1 씩 증가시키며 조건을 만족하는지 확인한다.  코드  # 22795 # 일곱 부하의 평균  T = int(input())  for test_case in range(1,T+1):     height = list(map(int, input().split()))     max_height = max(height)     result = max(height)     total = sum(height)     while True:         result +=...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>[기타] SSAFY 13기 비전공자 지원 후기</title>
+    <link href="https://iiiiin.github.io/posts/til-ssafy/" rel="alternate" type="text/html" title="[기타] SSAFY 13기 비전공자 지원 후기" />
+    <published>2025-01-12T16:00:00+09:00</published>
+  
+    <updated>2025-01-12T16:00:00+09:00</updated>
+  
+    <id>https://iiiiin.github.io/posts/til-ssafy/</id>
+    <content type="text/html" src="https://iiiiin.github.io/posts/til-ssafy/" />
+    <author>
+      <name>iiiiin</name>
+    </author>
+
+  
+    
+    <category term="ETC" />
+    
+  
+
+  <summary>SSAFY에 비전공자로 합격해서 입과하게 되었다.  지원 과정  에세이  취업이 아닌 교육임을 유념하고 작성을 시작했다.  주변의 첨삭을 받으며, 보다 구체적이고 일관된 주제로 이어질 수 있도록 노력했다.     목표는 SSAFY의 교육을 통한 빠른 취업   이를 중심으로 다음 흐름으로 에세이를 완성했다.     나의 경험   경험을 바탕으로 SSAFY가 필요한 이유   SSAFY에서 성장하여 실현할 목표   SW 적성 진단  시간이 얼마 남지 않아, 속성으로 준비했다.          수리/추리 논리력  책을 풀어보고 연습이 필요한 부분이라고 느꼈다. 전에 GSAT 책을 풀었었는데 그것보다는 쉬웠던 책 같다. 수리/추리 부분만을 골라 단시간에 문제를 풀어보는 연습을 했다.           Compu...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>[Programmers] 주식가격 - Python</title>
+    <link href="https://iiiiin.github.io/posts/programmers-stock/" rel="alternate" type="text/html" title="[Programmers] 주식가격 - Python" />
+    <published>2024-11-20T16:00:00+09:00</published>
+  
+    <updated>2024-11-20T16:00:00+09:00</updated>
+  
+    <id>https://iiiiin.github.io/posts/programmers-stock/</id>
+    <content type="text/html" src="https://iiiiin.github.io/posts/programmers-stock/" />
+    <author>
+      <name>iiiiin</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+  
+
+  <summary>풀이  배열을 순회하여 각 원소에 대해 원소보다 작은 값이 나타나면 값이 떨어진 것이므로, 작은 값이 나타나기 전까지의 시간을 저장한다.  코드  def solution(prices):     answer = []     for i in range(len(prices)):         sec = 0         for j in range(i+1,len(prices)):             sec += 1             if prices[i] &amp;gt; prices[j]:                 break                answer.append(sec)     return answer      출처: 프로그래머스 코딩 테스트 연습 https://school.programmer...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>[Programmers] 같은 숫자는 싫어 - Python</title>
+    <link href="https://iiiiin.github.io/posts/programmers-no-same-number/" rel="alternate" type="text/html" title="[Programmers] 같은 숫자는 싫어 - Python" />
+    <published>2024-11-20T16:00:00+09:00</published>
+  
+    <updated>2024-11-20T16:00:00+09:00</updated>
+  
+    <id>https://iiiiin.github.io/posts/programmers-no-same-number/</id>
+    <content type="text/html" src="https://iiiiin.github.io/posts/programmers-no-same-number/" />
+    <author>
+      <name>iiiiin</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+  
+
+  <summary>풀이 연속하는 숫자는 하나만 남기되  입력받은 배열 원소들의 순서를 유지해야 하므로,  배열을 순회하며 현재 원소와 이전 원소를 비교하고, 다를 경우 반환 리스트에 추가하는 방법으로 해결했다.  코드 def solution(arr):     answer = []     answer.append(arr[0])     for i in range(1,len(arr)):         if arr[i-1] != arr[i]:             answer.append(arr[i])     return answer      출처: 프로그래머스 코딩 테스트 연습 https://school.programmers.co.kr/learn/courses/30/lessons/12906</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>[Programmers] 입국심사 - Python</title>
+    <link href="https://iiiiin.github.io/posts/programmers-immigration/" rel="alternate" type="text/html" title="[Programmers] 입국심사 - Python" />
+    <published>2024-11-19T16:00:00+09:00</published>
+  
+    <updated>2024-11-19T16:00:00+09:00</updated>
+  
+    <id>https://iiiiin.github.io/posts/programmers-immigration/</id>
+    <content type="text/html" src="https://iiiiin.github.io/posts/programmers-immigration/" />
+    <author>
+      <name>iiiiin</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+  
+
+  <summary>풀이  시간이 기준이 아니라, 사람 수가 기준 사람 수(n)를 만족하는 시간의 최솟값 찾기  가능한 시간의 범위에서 이진 탐색, 끝 값은 가장 오래 걸리는 심사관이 모든 인원을 심사하는 경우     passenger += mid // x   통과하는 사람 수:  최대한 심사관이 계속 심사하는 경우, 시간을 추가하면서 가능한 심사관을 고려하지 않고, 시간을 줄이면서 가능한 사람 수를 고려   passenger &amp;gt;= n   사람 수 n을 만족하면서, 최솟값이 아닐 수 있으므로 계속 범위를 좁혀주기   코드  def solution(n, times):     # 심사시간 정렬     times.sort()     answer = 0     # 시작, 끝 값 설정     start = 1     end ...</summary>
 
   </entry>
 

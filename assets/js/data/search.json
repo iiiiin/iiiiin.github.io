@@ -1,12 +1,219 @@
 [
   
   {
-    "title": "Hello Chirpy: 마이그레이션 테스트",
-    "url": "/posts/hello-world/",
-    "categories": "Test, Sandbox",
-    "tags": "test, markdown",
-    "date": "2026-01-30 19:00:00 +0900",
-    "content": "👋 안녕하세요!  이 글은 Velog에서 GitHub Pages(Chirpy)로 이사 오기 전 테스트하는 포스트입니다. 이미지 없이 텍스트와 코드 하이라이팅이 잘 되는지 확인합니다.  ✅ 체크리스트     제목이 제대로 나오는가?   날짜가 올바른가?   카테고리(Test)와 태그(test)가 잘 달렸는가?   💻 코드 하이라이팅 테스트  ```python def hello_world():     print(“Hello, Chirpy Theme!”)  if name == “main”:     hello_world()"
+    "title": "[SWEA] 22795. 일곱 부하의 평균 - Python",
+    "url": "/posts/swea-average-of-seven/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2025-01-13 16:00:00 +0900",
+    "content": "풀이  조건을 잘 확인해야 한다. 입력된 여섯 부하보다 큰 값을 가지고, 모든 부하의 키의 평균이 양의 정수라는 것이다. 따라서, (모든 키 값의 합) % 7 == 0 이어야 된다는 것을 알 수 있다.  여섯 부하의 키 값 중 가장 큰 값을 기준으로 1 씩 증가시키며 조건을 만족하는지 확인한다.  코드  # 22795 # 일곱 부하의 평균  T = int(input())  for test_case in range(1,T+1):     height = list(map(int, input().split()))     max_height = max(height)     result = max(height)     total = sum(height)     while True:         result += 1         if (total+result) % 7 == 0:             break     print(result)          출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[기타] SSAFY 13기 비전공자 지원 후기",
+    "url": "/posts/til-ssafy/",
+    "categories": "ETC",
+    "tags": "SSAFY",
+    "date": "2025-01-12 16:00:00 +0900",
+    "content": "SSAFY에 비전공자로 합격해서 입과하게 되었다.  지원 과정  에세이  취업이 아닌 교육임을 유념하고 작성을 시작했다.  주변의 첨삭을 받으며, 보다 구체적이고 일관된 주제로 이어질 수 있도록 노력했다.     목표는 SSAFY의 교육을 통한 빠른 취업   이를 중심으로 다음 흐름으로 에세이를 완성했다.     나의 경험   경험을 바탕으로 SSAFY가 필요한 이유   SSAFY에서 성장하여 실현할 목표   SW 적성 진단  시간이 얼마 남지 않아, 속성으로 준비했다.          수리/추리 논리력  책을 풀어보고 연습이 필요한 부분이라고 느꼈다. 전에 GSAT 책을 풀었었는데 그것보다는 쉬웠던 책 같다. 수리/추리 부분만을 골라 단시간에 문제를 풀어보는 연습을 했다.           Computational Thinking      CT는 SWEA에서 문제를 풀면서 연습했다. 다른 분들이 추천해주신대로 D2 문제들을 다시 손으로 풀어보았다.      면접  대부분 면접스터디를 구한다고 해서, 나도 오픈카톡방에 들어가서 스터디를 구했다. 내게는 혼자 준비하는 것보다 확실히 도움이 되긴 했다.  ‘여기는 이렇게 답변하고, 이 질문에는 이렇게…‘  라고 혼자 시뮬레이션하는 것과 달리 처음보는 사람들에게 예상치 못한 질문을 받는 연습이 도움이 많이 되었다.  PT 면접은 노션으로 주제를 정리해서 IT 기술 관련 용어에 대해 학습했다.                 IT기술                       인공지능                 빅데이터                 메타버스                 블록체인                 IoT                 클라우드                 LLM           그리고 면접 시 발생하는 나의 문제점을 발견할 수 있었다.  결론 사실 재수였다. 졸업 즈음에 한 번 낙방했었지만 다시 도전했고, 합격했다! 노력해서 얻은 기회인만큼 최선을 다해서 SSAFY에서 취업을 향해 도전할 것이다."
+  },
+  
+  {
+    "title": "[Programmers] 주식가격 - Python",
+    "url": "/posts/programmers-stock/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-20 16:00:00 +0900",
+    "content": "풀이  배열을 순회하여 각 원소에 대해 원소보다 작은 값이 나타나면 값이 떨어진 것이므로, 작은 값이 나타나기 전까지의 시간을 저장한다.  코드  def solution(prices):     answer = []     for i in range(len(prices)):         sec = 0         for j in range(i+1,len(prices)):             sec += 1             if prices[i] &gt; prices[j]:                 break                answer.append(sec)     return answer      출처: 프로그래머스 코딩 테스트 연습 https://school.programmers.co.kr/learn/courses/30/lessons/42584"
+  },
+  
+  {
+    "title": "[Programmers] 같은 숫자는 싫어 - Python",
+    "url": "/posts/programmers-no-same-number/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-20 16:00:00 +0900",
+    "content": "풀이 연속하는 숫자는 하나만 남기되  입력받은 배열 원소들의 순서를 유지해야 하므로,  배열을 순회하며 현재 원소와 이전 원소를 비교하고, 다를 경우 반환 리스트에 추가하는 방법으로 해결했다.  코드 def solution(arr):     answer = []     answer.append(arr[0])     for i in range(1,len(arr)):         if arr[i-1] != arr[i]:             answer.append(arr[i])     return answer      출처: 프로그래머스 코딩 테스트 연습 https://school.programmers.co.kr/learn/courses/30/lessons/12906"
+  },
+  
+  {
+    "title": "[Programmers] 입국심사 - Python",
+    "url": "/posts/programmers-immigration/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-19 16:00:00 +0900",
+    "content": "풀이  시간이 기준이 아니라, 사람 수가 기준 사람 수(n)를 만족하는 시간의 최솟값 찾기  가능한 시간의 범위에서 이진 탐색, 끝 값은 가장 오래 걸리는 심사관이 모든 인원을 심사하는 경우     passenger += mid // x   통과하는 사람 수:  최대한 심사관이 계속 심사하는 경우, 시간을 추가하면서 가능한 심사관을 고려하지 않고, 시간을 줄이면서 가능한 사람 수를 고려   passenger &gt;= n   사람 수 n을 만족하면서, 최솟값이 아닐 수 있으므로 계속 범위를 좁혀주기   코드  def solution(n, times):     # 심사시간 정렬     times.sort()     answer = 0     # 시작, 끝 값 설정     start = 1     end = n*times[-1]     # 조건에 맞는 값 찾기 (이진탐색)     while start &lt;= end:         mid = (start + end) // 2         passenger = 0         for x in times:             passenger += mid // x             # 반복 중 조건 불만족 시 반복 중지             if passenger &gt; n:                 break         if passenger &gt;= n:             answer = mid             end = mid-1         else:             start = mid+1     return answer      출처: 프로그래머스 코딩 테스트 연습 https://school.programmers.co.kr/learn/courses/30/lessons/43238"
+  },
+  
+  {
+    "title": "[SWEA] 20728. 공평한 분배 2 - Python",
+    "url": "/posts/swea-fair-distribution-2/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-16 16:00:00 +0900",
+    "content": "풀이 슬라이딩 윈도우를 사용하여 풀어보았다. 먼저 원소 값 간 차이를 최소화 하기 위해 배열을 오름차순으로 정렬한다. 그리고 배열에서 선택하는 주머니 개수 만큼 범위를 지정하여 0번째 인덱스부터 차례로 순회한다.  예) [1,2,3,4,4,5], 주머니 2개 [1,2,3,4,4,5], 최솟값 : 1, 최댓값 : 2 [1,2,3,4,4,5], 최솟값 : 2, 최댓값 : 3 [1,2,3,4,4,5], 최솟값 : 3, 최댓값 : 4 [1,2,3,4,4,5], 최솟값 : 4, 최댓값 : 4 [1,2,3,4,4,5], 최솟값 : 4, 최댓값 : 5  범위 내에서 (최댓값 - 최솟값)을 찾아 이전 결과 값과 비교하여 업데이트한다.  코드 T = int(input())  for test_case in range(1, T + 1):      # 입력받기     n, k = map(int, input().split())     pocket = list(map(int, input().split()))          # 오름차순 정렬     pocket.sort()          # 결과값 : 원소 범위가 1 이상이므로 원소의 최댓값이 차이가 될 수 없으므로 초기화     result = pocket[-1]          # 반복문 순회하며 조건을 만족하는 값 업데이트     for i in range(n-k+1):             temp = pocket[i:i+k]         result = min(result, max(temp)-min(temp))          print(f\"#{test_case} {result}\")           출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[Programmers] 더 맵게 - Python",
+    "url": "/posts/programmers-more-spicy/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-15 16:00:00 +0900",
+    "content": "풀이  모든 음식의 스코빌지수가 K 이상이 되도록 “섞기” 반복     스코빌지수들을 heap 자료구조로 표현   최소힙 자료구조로, 0번째 원소가 가장 작은 원소   0번째 원소가 K 이상이 되면 모든 음식의 스코빌지수 &gt; K 이므로 0번째 원소를 조건으로 “섞기” 반복   섞기 : 가장 작은 값, 두 번째로 작은 값을 각각 heappop, 계산 결과 값을 다시 heappush   모든 원소가 K 이상으로 만들 수 없을 때:   “섞기”를 반복하면 2개의 값을 더해 1개의 값으로 변환,  원소의 개수가 줄어들기 때문에 결국 1개의 값이 남을 때 반복이 종료되고 1개의 값이 K 이상이 아닌 경우가 됨   코드 import heapq  def solution(scoville, K):     answer = 0     heapq.heapify(scoville)     while scoville[0] &lt; K:         if len(scoville) == 1:             answer = -1             break         heapq.heappush(scoville, heapq.heappop(scoville) + 2*heapq.heappop(scoville))         answer += 1     return answer      출처: 프로그래머스 코딩 테스트 연습 https://school.programmers.co.kr/learn/courses/30/lessons/42626"
+  },
+  
+  {
+    "title": "[SWEA] 12741. 두 전구 - Python",
+    "url": "/posts/swea-two-bulbs/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-06 16:00:00 +0900",
+    "content": "풀이     경우에 따라 조건 설정, 규칙 찾기   a,c중 큰 값에서 b,d 중 작은 값을 뺀 것   코드  # 12741 # 두 전구  T = int(input()) answer = []  for test_case in range(1,T+1):     a,b,c,d = map(int, input().split())     result = min(b,d) - max(a,c)     if result &lt; 0:         answer.append(\"#\"+str(test_case)+\" \"+\"0\")     else:         answer.append(\"#\"+str(test_case)+\" \"+str(result)) for x in answer:     print(x)      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 3376. 파도반 수열 - Python",
+    "url": "/posts/swea-padovan-sequence/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-06 16:00:00 +0900",
+    "content": "풀이  1 1 1 (1+1) (1+1) (1+(1+1)) (1+(1+(1+1)))  (1+(1+(1+(1+1)))) ((1+1)+(1+(1+(1+(1+1)))))  ((1+(1+1))+((1+1)+(1+(1+(1+(1+1))))))  수열 나열 후 규칙 찾기 점화식: **d[i] = d[i-1] + d[i-5] **  코드  # 3376 # 파도반 수열  T = int(input())  for test_case in range(1,T+1):     n = int(input())     seq = [1,1,1,2,2]     if n &gt; 5:         i = 5         while i &lt;= n:             seq.append(seq[i-1]+seq[i-5])             i += 1     result = seq[n-1]     print(f\"#{test_case} {result}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 20934. 방울 마술 - Python",
+    "url": "/posts/swea-drop-magic/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-06 16:00:00 +0900",
+    "content": "풀이  현재 방울이 있을 확률이 가장 높은 컵의 위치 (단, 그러한 컵이 여러 개 있다면 그 중 가장 왼쪽 위치)  최대한 왼쪽 위치에 방울이 있는 경우 고려     o..  시작 위치가 .o.인 경우, 왼쪽으로 이동  시작 위치가 ..o인 경우, 왼쪽으로 계속 이동   .o.  시작 위치가 o..인 경우, 오른쪽으로 이동  시작 위치가 ..o인 경우, 왼쪽으로 이동   ..o  K=0 인 경우, 이동하지 않았을 때만 가능   시작 위치 0인 경우 오른쪽으로 이동 그 외의 경우 모두 왼쪽으로 이동  코드 # 20934 # 방울 마술  T = int(input())  for test_case in range(1,T+1):     s, k = input().split()     s = list(s)     bell = s.index(\"o\")     for i in range(int(k)):         if bell == 0:             bell += 1         else:             bell -= 1     result = bell     print(f\"#{test_case} {result}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 16002. 합성수 방정식 - Python",
+    "url": "/posts/swea-composite-number-equation/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-06 16:00:00 +0900",
+    "content": "풀이  입력받은 n에 대해 x, x+n 이 합성수 인지 판별하는 함수 생성 만족할 경우 반복문 중지     합성수 판별 함수   수의 제곱근까지만 확인하여   약수가 있는지 확인   제곱근을 기준으로 약수들이 대칭이기 때문에 제곱근까지만 확인   코드  # 16002 # 합성수 방정식  # x, y가 합성수인지 확인하는 함수 def chk(num):     for i in range(2,int(num**(0.5))+1):         if num % i == 0:             return True     return False  T = int(input())  for test_case in range(1,T+1):     n = int(input())     x = 4     # x, x+n을 만족하는 x 값을 확인     # x, y(x+n)의 함수가 모두 True 일 때, 반복문 중단     while True:         if chk(x) and chk(x+n):             break         x += 1     print(f\"#{test_case} {x+n} {x}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 6485. 삼성시의 버스 노선 - Python",
+    "url": "/posts/swea-bus-stop/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-11-06 16:00:00 +0900",
+    "content": "풀이  버스 정류장 번호를 인덱스로 하는 리스트 생성 노선 구간에 정류장이 속할 경우 +1 반복  코드  # 6485 # 삼성시의 버스 노선  T = int(input()) result = []  for test_case in range(1,T+1):     n = int(input())     bus = [0]*5001     for _ in range(n):         a, b = map(int, input().split())         for i in range(a,b+1):             bus[i] += 1     p = int(input())     temp = [bus[int(input())] for x in range(p)]     result.append(temp)  for j in range(1,T+1):     print(f\"#{j}\", end=\" \")     print(*result[j-1])      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1206. [S/W 문제해결 기본] 1일차 - View - Python",
+    "url": "/posts/swea-view/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-25 16:00:00 +0900",
+    "content": "풀이 조망권이 확보되는 조건을 만족하면 왼쪽 2칸, 오른쪽 2칸 중 가장 높은 빌딩의 높이보다 높은 만큼 세대의 조망권이 확보된다.  코드 # 1206 # [S/W 문제해결 기본] 1일차 - View  for test_case in range(1,11):     n = int(input())     heights = list(map(int, input().split()))     result = 0     for i in range(2,n-2):         conditions = [heights[i] &gt; heights[i-2], heights[i] &gt; heights[i-1],                   heights[i] &gt; heights[i+2], heights[i] &gt; heights[i+1]]         comp = [heights[i-2],heights[i-1],heights[i+1],heights[i+2]]         if all(conditions):             result += heights[i] - max(comp)     print(f\"#{test_case} {result}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1215. [S/W 문제해결 기본] 3일차 - 회문1 - Python",
+    "url": "/posts/swea-palindrome-1/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-25 16:00:00 +0900",
+    "content": "풀이 배열을 순회하면서, 주어진 길이의 문자열을 찾아 회문인지 확인한다. 배열을 전치시켜 행과 열을 뒤집고 다시 배열을 순회하며 회문 조건을 만족하는 지 확인한다.  list(zip(*arr))     * 연산자를 사용하여 배열(arr)을 언패킹(unpacking)한다.      # 예)  arr = [\"ABC\",      \"DEF\",      \"GHI\"]   print(*arr) # ABC DEF GHI                zip() 을 통해 각 원소의 동일한 위치(인덱스)끼리 묶어준다. (zip()은 iterable(반복가능, 순차접근가능)한 객체에 사용가능하므로, string으로 이루어진 배열에 적용했다.)      zip 객체인 상태에서 list() 를 사용하여 리스트로 변환, 배열이 전치된 형태로 반환된다.      # 예)   zip(*arr) # zip 객체, list 변환 필요  list(zip(*arr))  # [(\"A\",\"D\",\"G\"),  #  (\"B\",\"E\",\"H\"),  #  (\"C\",\"F\",\"I\")]           코드 # 1215 # [S/W 문제해결 기본] 3일차 - 회문1  for test_case in range(1,11):     n = int(input())     arr = [input() for _ in range(8)]     result = 0     for i in range(8):         for j in range(8-n+1):             if arr[i][j:j+n] == arr[i][j:j+n][::-1]:                 result += 1     t_arr = list(zip(*arr))     for i in range(8):         for j in range(8-n+1):             if t_arr[i][j:j+n] == t_arr[i][j:j+n][::-1]:                 result += 1     print(f\"#{test_case} {result}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 5603. [Professional] 건초더미 - Python",
+    "url": "/posts/swea-haystack/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-25 16:00:00 +0900",
+    "content": "풀이 건초더미 1을 옮기는 데 1회의 움직임이 발생한다. 원래는 모두 같은 크기의 건초더미였으므로 원래 크기는 모든 건초더미의 평균임을 알 수 있다. 평균보다 큰 건초더미에서 평균보다 큰 만큼의 건초더미를 옮기면 된다.  코드 # 5603 # [Professional] 건초더미  T = int(input())  for test_case in range(1,T+1):     n = int(input())     result = 0     dummy = [int(input()) for _ in range(n)]     mean_dummy = sum(dummy)/n     for i in range(n):         if mean_dummy &lt; dummy[i]:             result += dummy[i] - mean_dummy     print(f\"#{test_case} {int(result)}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1221. [S/W 문제해결 기본] 5일차 - GNS - Python",
+    "url": "/posts/swea-gns/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-25 16:00:00 +0900",
+    "content": "풀이 문자가 나타내는 수의 크기를 기준으로 정렬하기 위해 key를 문자열, value를 숫자로 딕셔너리를 생성한다. 그리고 입력받은 리스트의 문자열을 생성한 딕셔너리의 key로 하여 숫자를 불러온다. 숫자로 이루어진 리스트를 정렬 후 딕셔너리의 key : value를 value : key로 변환한다. 다시 정렬된 리스트의 숫자를 key로 하는 문자열을 불러온다.  코드 # 1221 # [S/W 문제해결 기본] 5일차 - GNS  T = int(input())  for test_case in range(1,T+1):     num = {\"ZRO\":0,\"ONE\":1,\"TWO\":2,\"THR\":3,\"FOR\":4,            \"FIV\":5,\"SIX\":6,\"SVN\":7,\"EGT\":8,\"NIN\":9}     tc, n = input().split()     num_list = list(input().split())     comp = sorted([num[x] for x in num_list])     num = {value:key for key,value in num.items()}     result = [num[x] for x in comp]     print(tc)     print(*result)     출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1208. [S/W 문제해결 기본] 1일차 - Flatten - Python",
+    "url": "/posts/swea-flatten/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-25 16:00:00 +0900",
+    "content": "풀이 덤프를 주어진 횟수만큼 수행한다. index 메서드로 최고점과 최저점의 위치를 찾아 1씩 옮긴다.  코드 # 1208 # [S/W 문제해결 기본] 1일차 - Flatten  for test_case in range(1,11):     dump = int(input())     box = list(map(int, input().split()))     for i in range(dump):         box[box.index(max(box))] -= 1         box[box.index(min(box))] += 1     result = max(box) - min(box)     print(f\"#{test_case} {result}\")     출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1209. [S/W 문제해결 기본] 2일차 - Sum - Python",
+    "url": "/posts/swea-sum/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-23 16:00:00 +0900",
+    "content": "풀이 배열을 순회하면서 각 값들의 합을 구하고 최댓값을 구한다. 100*100 배열에서  우측 상단에서 시작하는 대각선은 행의 인덱스 + 열의 인덱스 == 99, 좌측 상단에서 시작하는 대각선은 행의 인덱스 == 열의 인덱스 임을 확인하여 값을 찾아 더한다. 이외에 각 행과 열의 합들은 배열을 순회하며 더한다.  코드 # 1209 # [S/W 문제해결 기본] 2일차 - Sum  for test_case in range(1,11):     tc = int(input())     arr = []     for _ in range(100):         arr.append(list(map(int, input().split())))     hor, ver, diagr, diagl, k = 0, 0, 0, 0, 0     for i in range(100):         vertemp = 0         if hor &lt; sum(arr[i]):             hor = sum(arr[i])         for j in range(100):             vertemp += arr[j][i]             if i == j:                 diagr += arr[i][j]             if i + j == 99:                 diagl += arr[i][j]         if ver &lt; vertemp:             ver = vertemp     result = max([hor, ver, diagr, diagl])     print(f\"#{tc} {result}\")     출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1216. [S/W 문제해결 기본] 3일차 - 회문2 - Python",
+    "url": "/posts/swea-palindrome-2/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-23 16:00:00 +0900",
+    "content": "풀이 배열에서 슬라이딩윈도우처럼 시작점을 이동하며 특정 길이 j인 문자열이 회문인지 확인하고, 회문을 찾으면 그 길이를 리스트에 담는다. 배열을 전치 후에 다시 반복하여 회문을 찾아 그 길이를 리스트에 담는다. 이후 리스트의 최댓값, 즉 회문 길이의 최댓값을 찾는다.  코드 # 1216 # [S/W 문제해결 기본] 3일차 - 회문2  for test_case in range(1,11):     n = int(input())     s = [input() for _ in range(100)]     temp = []          for i in range(100):         flag = 0         for j in range(100,-1,-1):             for k in range(100-j+1):                 if s[i][k:k+j] == s[i][k:k+j][::-1]:                     temp.append(j)                     flag = 1                     break             if flag == 1:                 break      s = list(zip(*s))      for i in range(100):         flag = 0         for j in range(100,-1,-1):             for k in range(100-j+1):                 if \"\".join(s[i][k:k+j]) == \"\".join(s[i][k:k+j])[::-1]:                     temp.append(j)                     flag = 1                     break             if flag == 1:                 break         result = max(temp)     print(f\"#{n} {result}\")      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 19185. 육십갑자 - Python",
+    "url": "/posts/swea-sexagenary-cycle/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-22 16:00:00 +0900",
+    "content": "풀이  현재 방울이 있을 확률이 가장 높은 컵의 위치 (단, 그러한 컵이 여러 개 있다면 그 중 가장 왼쪽 위치)  최대한 왼쪽 위치에 방울이 있는 경우 고려     o..  시작 위치가 .o.인 경우, 왼쪽으로 이동  시작 위치가 ..o인 경우, 왼쪽으로 계속 이동   .o.  시작 위치가 o..인 경우, 오른쪽으로 이동  시작 위치가 ..o인 경우, 왼쪽으로 이동   ..o  K=0 인 경우, 이동하지 않았을 때만 가능   시작 위치 0인 경우 오른쪽으로 이동 그 외의 경우 모두 왼쪽으로 이동  코드 # 19185 # 육십갑자  T = int(input())  for test_case in range():     n,m = map(int, input().split())     s = list(input().split())     t = list(input().split())     q = int(input())     result = []     for _ in range(q):         k = int(input())         result.append(\"\".join([s[k%n-1],t[k%m-1]]))     print(f\"#{test_case} \", end=\"\")     print(*result)      출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 19003. 팰린드롬 문제 - Python",
+    "url": "/posts/swea-palindrome/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-22 16:00:00 +0900",
+    "content": "풀이  같은 길이의 서로 다른 문자열을 조합해서  최대 길이의 팰린드롬이 되려면, A-B-C-…-팰린드롬-…-C역순-B역순-A역순 이 되어야 한다.  따라서,     팰린드롬은 1개 이상 있는지 확인: + 1개의 길이 (flag로 1번만 확인)   각 문자열의 역순 문자열을 찾아 확인: + x * 2개의 길이 (문자열 + 역순문자열)   중복 방지를 위해 빈 문자열 처리, 이후 조건 1에 ““이 아닌 경우도 포함  코드 # 19003 # 팰린드롬 문제  T = int(input())  for test_case in range(1,T+1):     result = 0     flag = 0     n,m = map(int, input().split())     s = [input() for _ in range(n)]     for i in range(n):         for j in range(n):             if s[i][::-1] == s[j] and i != j:                 result += 2*m                 s[i] = \"\"             elif s[i] == s[i][::-1] and flag == 0 and s[i] != \"\":                 result += m                 flag = 1     print(f\"#{test_case} {result}\")     출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1213. [S/W 문제해결 기본] 3일차 - String - Python",
+    "url": "/posts/swea-string/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-21 16:00:00 +0900",
+    "content": "풀이 count() 메서드를 사용하여 간단하게 특정 문자열의 개수를 구한다.  코드 # 1213 # [S/W 문제해결 기본] 3일차 - String  for test_case in range(1,11):     n = int(input())     s_find = input()     s = input()     result = s.count(s_find)     print(f\"#{n} {result}\")     출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 1217. [S/W 문제해결 기본] 4일차 - 거듭 제곱 - Python",
+    "url": "/posts/swea-power/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-20 16:00:00 +0900",
+    "content": "풀이 재귀함수를 사용하여 계산을 수행한다. 밑과 지수(거듭제곱 횟수)가 입력되므로,  재귀함수의 종료조건에서 거듭제곱 횟수를 제한하여 입력된 만큼 거듭제곱을 반복하도록 한다. 거듭제곱을 실행한 값과 실행한 횟수를 다시 입력으로 재귀함수를 실행한다.  코드 # 1217 # [S/W 문제해결 기본] 4일차 - 거듭제곱  def power(x, y, p, cnt):     # 종료조건     if p &lt;= cnt:         return y     y *= x     cnt += 1      # 재귀함수 실행     return power(x, y, p, cnt)  for test_case in range(10):     test = int(input())     n, m = map(int, input().split())     result = power(n, n, m, 1)     print(f\"#{test} {result}\")     출처: SWEA https://swexpertacademy.com/main/main.do"
+  },
+  
+  {
+    "title": "[SWEA] 5601. [Professional] 쥬스 나누기 - Python",
+    "url": "/posts/swea-juice-distribution/",
+    "categories": "Algorithm",
+    "tags": "Python, Algorithm",
+    "date": "2024-09-20 16:00:00 +0900",
+    "content": "풀이 내가 정한 양의 주스를 내가 못 마실 수도 있다. 를 고려하면 최대한의 쥬스를 마시기 위해 균등하게 1/N 잔으로 분배해야 함을 알 수 있다.  코드 # 5601 # [Professional] 쥬스 나누기  T = int(input())  for test_case in range(1,T+1):     juice = int(input())     result = [\"1\"+\"/\"+str(juice) for _ in range(juice)]     print(f\"#{test_case} \", end=\"\")     print(*result)     출처: SWEA https://swexpertacademy.com/main/main.do"
   }
   
 ]
