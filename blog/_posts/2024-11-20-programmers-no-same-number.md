@@ -3,6 +3,7 @@ title: "[Programmers] 같은 숫자는 싫어 - Python"
 date: 2024-11-20 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "Programmers '같은 숫자는 싫어' 문제 풀이를 정리했습니다."
 ---
 
 

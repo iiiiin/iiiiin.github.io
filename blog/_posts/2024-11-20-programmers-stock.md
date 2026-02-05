@@ -3,6 +3,7 @@ title: "[Programmers] 주식가격 - Python"
 date: 2024-11-20 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "Programmers '주식가격' 문제 풀이를 정리했습니다."
 ---
 
 ## 풀이
@@ -27,3 +28,4 @@ def solution(prices):
 
 > 출처: 프로그래머스 코딩 테스트 연습
 > https://school.programmers.co.kr/learn/courses/30/lessons/42584
+

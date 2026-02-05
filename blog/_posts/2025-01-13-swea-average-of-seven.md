@@ -3,6 +3,7 @@ title: "[SWEA] 22795. 일곱 부하의 평균 - Python"
 date: 2025-01-13 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "SWEA '22795. 일곱 부하의 평균' 문제 풀이를 정리했습니다."
 ---
 
 ## 풀이

@@ -3,6 +3,7 @@ title: "[SWEA] 6485. 삼성시의 버스 노선 - Python"
 date: 2024-11-06 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "SWEA '6485. 삼성시의 버스 노선' 문제 풀이를 정리했습니다."
 ---
 
 ## 풀이

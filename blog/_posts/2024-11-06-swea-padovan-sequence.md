@@ -3,6 +3,7 @@ title: "[SWEA] 3376. 파도반 수열 - Python"
 date: 2024-11-06 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "SWEA '3376. 파도반 수열' 문제 풀이를 정리했습니다."
 ---
 
 ## 풀이

@@ -3,6 +3,7 @@ title: "[SWEA] 1215. [S/W 문제해결 기본] 3일차 - 회문1 - Python"
 date: 2024-09-25 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "SWEA '1215. [S/W 문제해결 기본] 3일차' 문제 풀이를 정리했습니다."
 ---
 
 ## 풀이

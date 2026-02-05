@@ -3,6 +3,7 @@ title: "[Programmers] 입국심사 - Python"
 date: 2024-11-19 16:00:00 +0900
 categories: [Algorithm]
 tags: [Python, Algorithm]
+description: "Programmers '입국심사' 문제 풀이를 정리했습니다."
 ---
 
 ## 풀이
